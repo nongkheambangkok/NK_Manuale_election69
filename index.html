@@ -1,223 +1,286 @@
-import React, { useState } from 'react';
-import { 
-  BookOpen, 
-  Users, 
-  UserCheck, 
-  MapPin, 
-  CalendarClock, 
-  BarChart3, 
-  Accessibility, 
-  ClipboardCheck, 
-  FileText,
-  X,
-  ExternalLink,
-  ChevronRight
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ศูนย์รวมคู่มือเลือกตั้ง 2569</title>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Sarabun) -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Sarabun', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="root"></div>
 
-const ElectionManualApp = () => {
-  const [selectedManual, setSelectedManual] = useState(null);
+    <script type="text/babel">
+        const { useState } = React;
 
-  // ข้อมูลคู่มือทั้ง 9 รายการตามที่ระบุ
-  const manuals = [
-    {
-      id: 1,
-      title: "พรบ. การเลือกตั้ง ส.ส. และ พรบ.การออกเสียงประชามติ",
-      description: "กฎหมายแม่บทและระเบียบที่เกี่ยวข้องกับการเลือกตั้งสมาชิกสภาผู้แทนราษฎรและการทำประชามติ",
-      url: "https://qr1.me-qr.com/mobile/pdf/a83e3e86-72a5-47da-992e-c388b0370448",
-      icon: <BookOpen className="w-8 h-8 text-blue-600" />,
-      color: "bg-blue-50"
-    },
-    {
-      id: 2,
-      title: "คู่มือนายทะเบียนอำเภอ/นายทะเบียนท้องถิ่น",
-      description: "แนวทางการปฏิบัติงานสำหรับนายทะเบียนในการจัดทำบัญชีรายชื่อผู้มีสิทธิเลือกตั้งและการบริหารจัดการงานทะเบียน",
-      url: "https://q.me-qr.com/4pH9IZrE",
-      icon: <UserCheck className="w-8 h-8 text-indigo-600" />,
-      color: "bg-indigo-50"
-    },
-    {
-      id: 3,
-      title: "คู่มือ ผอ.กกต.เขต และ กกต.เขต",
-      description: "คู่มือสำหรับผู้อำนวยการการเลือกตั้งประจำเขตและคณะกรรมการการเลือกตั้งประจำเขต",
-      url: "https://q.me-qr.com/J4NjUVJG",
-      icon: <Users className="w-8 h-8 text-purple-600" />,
-      color: "bg-purple-50"
-    },
-    {
-      id: 4,
-      title: "คู่มือปฏิบัติงานการ ลต.นอกเขตและการออกเสียงนอกเขต",
-      description: "ขั้นตอนการดำเนินการจัดการเลือกตั้งนอกเขตเลือกตั้ง",
-      url: "https://q.me-qr.com/s4351vqi",
-      icon: <MapPin className="w-8 h-8 text-teal-600" />,
-      color: "bg-teal-50"
-    },
-    {
-      id: 5,
-      title: "คู่มือปฏิบัติงานการ ลต.ล่วงหน้าในเขตเลือกตั้ง ส.ส.",
-      description: "การบริหารจัดการและขั้นตอนสำหรับการเลือกตั้งล่วงหน้าภายในเขตเลือกตั้ง",
-      url: "https://q.me-qr.com/2vrurh1l",
-      icon: <CalendarClock className="w-8 h-8 text-orange-600" />,
-      color: "bg-orange-50"
-    },
-    {
-      id: 6,
-      title: "คู่มือนับคะแนน ลต.นอกเขต และนอกราชอาณาจักร",
-      description: "ระเบียบและวิธีการนับคะแนนสำหรับการเลือกตั้งนอกเขตและนอกราชอาณาจักร",
-      url: "https://q.me-qr.com/flynw41n",
-      icon: <BarChart3 className="w-8 h-8 text-red-600" />,
-      color: "bg-red-50"
-    },
-    {
-      id: 7,
-      title: "คู่มือปฏิบัติการ ลต.สำหรับผู้พิการหรือทุพพลภาพ",
-      description: "แนวทางการอำนวยความสะดวกและจัดการเลือกตั้งสำหรับผู้พิการหรือทุพพลภาพ",
-      url: "https://drive.google.com/file/d/1rmCya1433VpuLRJJ5WNPFe_JpfosZQts/view?usp=sharing",
-      icon: <Accessibility className="w-8 h-8 text-pink-600" />,
-      color: "bg-pink-50"
-    },
-    {
-      id: 8,
-      title: "คู่มือปฏิบัติการ ลต.ก่อนวันเลือกตั้ง",
-      description: "สิ่งที่ต้องเตรียมพร้อมและการปฏิบัติงานในช่วงเวลาก่อนถึงวันเลือกตั้งจริง",
-      url: "https://q.me-qr.com/m62ct34q",
-      icon: <ClipboardCheck className="w-8 h-8 text-emerald-600" />,
-      color: "bg-emerald-50"
-    },
-    {
-      id: 9,
-      title: "คู่มือ กปน. สำหรับการ ลต.ส.ส. และประชามติ",
-      description: "คู่มือสำหรับคณะกรรมการประจำหน่วยเลือกตั้ง (กปน.) ในวันเลือกตั้ง",
-      url: "https://drive.google.com/file/d/1It1Vp1BqCQVAeL4LV_S3kixQK8Rf6Fxu/view?usp=sharing",
-      icon: <FileText className="w-8 h-8 text-gray-600" />,
-      color: "bg-gray-50"
-    }
-  ];
+        // --- Icon Components (Replacing lucide-react imports for offline/CDN compatibility) ---
+        const IconBase = ({ children, className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                {children}
+            </svg>
+        );
 
-  return (
-    <div className="min-h-screen bg-gray-100 font-sans">
-      {/* Header Section */}
-      <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {/* Logo Section - Replaces the book icon */}
-            <img 
-              src="logo.png" 
-              alt="ตราสัญลักษณ์ กทม." 
-              className="h-16 w-auto object-contain"
-            />
-            
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">ศูนย์รวมคู่มือเลือกตั้ง 2569</h1>
-              <p className="text-xs text-gray-500">Election Manual Center 2026</p>
-            </div>
-          </div>
-        </div>
-      </header>
+        const BookOpen = ({ className }) => (
+            <IconBase className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></IconBase>
+        );
+        const Users = ({ className }) => (
+            <IconBase className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></IconBase>
+        );
+        const UserCheck = ({ className }) => (
+            <IconBase className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></IconBase>
+        );
+        const MapPin = ({ className }) => (
+            <IconBase className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></IconBase>
+        );
+        const CalendarClock = ({ className }) => (
+            <IconBase className={className}><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><circle cx="17.5" cy="17.5" r="3.5"/><path d="M18 17v2l1.5 1.5"/></IconBase>
+        );
+        const BarChart3 = ({ className }) => (
+            <IconBase className={className}><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></IconBase>
+        );
+        const Accessibility = ({ className }) => (
+            <IconBase className={className}><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 4.5"/><path d="M8 19v-9"/></IconBase>
+        );
+        const ClipboardCheck = ({ className }) => (
+            <IconBase className={className}><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></IconBase>
+        );
+        const FileText = ({ className }) => (
+            <IconBase className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></IconBase>
+        );
+        const XIcon = ({ className }) => (
+            <IconBase className={className}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></IconBase>
+        );
+        const ExternalLink = ({ className }) => (
+            <IconBase className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></IconBase>
+        );
+        const ChevronRight = ({ className }) => (
+            <IconBase className={className}><path d="m9 18 6-6-6-6"/></IconBase>
+        );
 
-      {/* Main Content - Grid 3x3 */}
-      <main className="max-w-5xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {manuals.map((manual) => (
-            <button
-              key={manual.id}
-              onClick={() => setSelectedManual(manual)}
-              className="group flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 relative overflow-hidden"
-            >
-              {/* Card Decoration */}
-              <div className={`absolute top-0 left-0 w-full h-1 ${manual.color.replace('bg-', 'bg-gradient-to-r from-transparent via-')}${manual.color.replace('bg-', 'to-transparent ').replace('50', '400')}`}></div>
-              
-              <div className={`p-4 rounded-full ${manual.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                {manual.icon}
-              </div>
-              
-              <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2 min-h-[3.5rem] flex items-center justify-center">
-                {manual.title}
-              </h3>
-              
-              <p className="text-sm text-gray-500 line-clamp-2 mb-4">
-                คลิกเพื่อดูรายละเอียดและดาวน์โหลดเอกสาร
-              </p>
+        // --- Main Application ---
+        const ElectionManualApp = () => {
+            const [selectedManual, setSelectedManual] = useState(null);
 
-              <div className="mt-auto flex items-center text-sm font-medium text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                อ่านคู่มือ <ChevronRight size={16} />
-              </div>
-            </button>
-          ))}
-        </div>
-      </main>
+            const manuals = [
+                {
+                    id: 1,
+                    title: "พรบ. การเลือกตั้ง ส.ส. และ พรบ.การออกเสียงประชามติ",
+                    description: "กฎหมายแม่บทและระเบียบที่เกี่ยวข้องกับการเลือกตั้งสมาชิกสภาผู้แทนราษฎรและการทำประชามติ",
+                    url: "https://qr1.me-qr.com/mobile/pdf/a83e3e86-72a5-47da-992e-c388b0370448",
+                    icon: <BookOpen className="w-8 h-8 text-blue-600" />,
+                    color: "bg-blue-50"
+                },
+                {
+                    id: 2,
+                    title: "คู่มือนายทะเบียนอำเภอ/นายทะเบียนท้องถิ่น",
+                    description: "แนวทางการปฏิบัติงานสำหรับนายทะเบียนในการจัดทำบัญชีรายชื่อผู้มีสิทธิเลือกตั้งและการบริหารจัดการงานทะเบียน",
+                    url: "https://q.me-qr.com/4pH9IZrE",
+                    icon: <UserCheck className="w-8 h-8 text-indigo-600" />,
+                    color: "bg-indigo-50"
+                },
+                {
+                    id: 3,
+                    title: "คู่มือ ผอ.กกต.เขต และ กกต.เขต",
+                    description: "คู่มือสำหรับผู้อำนวยการการเลือกตั้งประจำเขตและคณะกรรมการการเลือกตั้งประจำเขต",
+                    url: "https://q.me-qr.com/J4NjUVJG",
+                    icon: <Users className="w-8 h-8 text-purple-600" />,
+                    color: "bg-purple-50"
+                },
+                {
+                    id: 4,
+                    title: "คู่มือปฏิบัติงานการ ลต.นอกเขตและการออกเสียงนอกเขต",
+                    description: "ขั้นตอนการดำเนินการจัดการเลือกตั้งนอกเขตเลือกตั้ง",
+                    url: "https://q.me-qr.com/s4351vqi",
+                    icon: <MapPin className="w-8 h-8 text-teal-600" />,
+                    color: "bg-teal-50"
+                },
+                {
+                    id: 5,
+                    title: "คู่มือปฏิบัติงานการ ลต.ล่วงหน้าในเขตเลือกตั้ง ส.ส.",
+                    description: "การบริหารจัดการและขั้นตอนสำหรับการเลือกตั้งล่วงหน้าภายในเขตเลือกตั้ง",
+                    url: "https://q.me-qr.com/2vrurh1l",
+                    icon: <CalendarClock className="w-8 h-8 text-orange-600" />,
+                    color: "bg-orange-50"
+                },
+                {
+                    id: 6,
+                    title: "คู่มือนับคะแนน ลต.นอกเขต และนอกราชอาณาจักร",
+                    description: "ระเบียบและวิธีการนับคะแนนสำหรับการเลือกตั้งนอกเขตและนอกราชอาณาจักร",
+                    url: "https://q.me-qr.com/flynw41n",
+                    icon: <BarChart3 className="w-8 h-8 text-red-600" />,
+                    color: "bg-red-50"
+                },
+                {
+                    id: 7,
+                    title: "คู่มือปฏิบัติการ ลต.สำหรับผู้พิการหรือทุพพลภาพ",
+                    description: "แนวทางการอำนวยความสะดวกและจัดการเลือกตั้งสำหรับผู้พิการหรือทุพพลภาพ",
+                    url: "https://drive.google.com/file/d/1rmCya1433VpuLRJJ5WNPFe_JpfosZQts/view?usp=sharing",
+                    icon: <Accessibility className="w-8 h-8 text-pink-600" />,
+                    color: "bg-pink-50"
+                },
+                {
+                    id: 8,
+                    title: "คู่มือปฏิบัติการ ลต.ก่อนวันเลือกตั้ง",
+                    description: "สิ่งที่ต้องเตรียมพร้อมและการปฏิบัติงานในช่วงเวลาก่อนถึงวันเลือกตั้งจริง",
+                    url: "https://q.me-qr.com/m62ct34q",
+                    icon: <ClipboardCheck className="w-8 h-8 text-emerald-600" />,
+                    color: "bg-emerald-50"
+                },
+                {
+                    id: 9,
+                    title: "คู่มือ กปน. สำหรับการ ลต.ส.ส. และประชามติ",
+                    description: "คู่มือสำหรับคณะกรรมการประจำหน่วยเลือกตั้ง (กปน.) ในวันเลือกตั้ง",
+                    url: "https://drive.google.com/file/d/1It1Vp1BqCQVAeL4LV_S3kixQK8Rf6Fxu/view?usp=sharing",
+                    icon: <FileText className="w-8 h-8 text-gray-600" />,
+                    color: "bg-gray-50"
+                }
+            ];
 
-      {/* Footer */}
-      <footer className="bg-white border-t mt-auto py-6">
-        <div className="max-w-5xl mx-auto px-4 text-center text-gray-500 text-sm">
-          <p>© 2569 ระบบศูนย์รวมคู่มือการเลือกตั้ง</p>
-          <p className="mt-1 text-xs">พัฒนาเพื่ออำนวยความสะดวกในการเข้าถึงข้อมูลการเลือกตั้ง</p>
-        </div>
-      </footer>
+            return (
+                <div className="min-h-screen bg-gray-100 font-sans">
+                {/* Header Section */}
+                <header className="bg-white shadow-sm sticky top-0 z-10">
+                    <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        {/* Logo Section */}
+                        <img 
+                        src="logo.png" 
+                        alt="ตราสัญลักษณ์ กทม." 
+                        className="h-16 w-auto object-contain"
+                        />
+                        
+                        <div>
+                        <h1 className="text-xl font-bold text-gray-900">ศูนย์รวมคู่มือเลือกตั้ง 2569</h1>
+                        <p className="text-xs text-gray-500">Election Manual Center 2026</p>
+                        </div>
+                    </div>
+                    </div>
+                </header>
 
-      {/* Modal Popup */}
-      {selectedManual && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div 
-            className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in zoom-in-95 duration-200"
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className={`p-6 ${selectedManual.color} border-b border-gray-100 flex justify-between items-start`}>
-              <div className="flex gap-4">
-                <div className="p-2 bg-white rounded-lg shadow-sm h-fit">
-                  {selectedManual.icon}
+                {/* Main Content - Grid 3x3 */}
+                <main className="max-w-5xl mx-auto px-4 py-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {manuals.map((manual) => (
+                        <button
+                        key={manual.id}
+                        onClick={() => setSelectedManual(manual)}
+                        className="group flex flex-col items-center text-center p-6 bg-emerald-600 rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-emerald-500 hover:-translate-y-1 relative overflow-hidden w-full"
+                        >
+                        {/* Card Decoration */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+                        
+                        {/* Icon Container - Now White to pop on Green */}
+                        <div className="p-4 rounded-full bg-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                            {manual.icon}
+                        </div>
+                        
+                        <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2 min-h-[3.5rem] flex items-center justify-center">
+                            {manual.title}
+                        </h3>
+                        
+                        <p className="text-sm text-emerald-50 line-clamp-2 mb-4">
+                            คลิกเพื่อดูรายละเอียดและดาวน์โหลดเอกสาร
+                        </p>
+
+                        <div className="mt-auto flex items-center text-sm font-medium text-white bg-white/20 px-4 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all">
+                            อ่านคู่มือ <ChevronRight className="w-4 h-4 ml-1" />
+                        </div>
+                        </button>
+                    ))}
+                    </div>
+                </main>
+
+                {/* Footer */}
+                <footer className="bg-white border-t mt-auto py-6">
+                    <div className="max-w-5xl mx-auto px-4 text-center text-gray-500 text-sm">
+                    <p>© 2569 ระบบศูนย์รวมคู่มือการเลือกตั้ง</p>
+                    <p className="mt-1 text-xs">พัฒนาเพื่ออำนวยความสะดวกในการเข้าถึงข้อมูลการเลือกตั้ง</p>
+                    </div>
+                </footer>
+
+                {/* Modal Popup */}
+                {selectedManual && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div 
+                        className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in zoom-in-95 duration-200"
+                        role="dialog"
+                        aria-modal="true"
+                    >
+                        <div className={`p-6 ${selectedManual.color} border-b border-gray-100 flex justify-between items-start`}>
+                        <div className="flex gap-4">
+                            <div className="p-2 bg-white rounded-lg shadow-sm h-fit">
+                            {selectedManual.icon}
+                            </div>
+                            <div>
+                            <h2 className="text-xl font-bold text-gray-900 leading-snug">
+                                {selectedManual.title}
+                            </h2>
+                            <span className="inline-block mt-2 px-2 py-1 bg-white/60 text-xs font-semibold rounded text-gray-600">
+                                PDF Document
+                            </span>
+                            </div>
+                        </div>
+                        <button 
+                            onClick={() => setSelectedManual(null)}
+                            className="p-1 hover:bg-black/10 rounded-full transition-colors"
+                        >
+                            <XIcon className="w-6 h-6 text-gray-500" />
+                        </button>
+                        </div>
+
+                        <div className="p-6">
+                        <p className="text-gray-600 mb-6 leading-relaxed">
+                            {selectedManual.description}
+                        </p>
+
+                        <div className="space-y-3">
+                            <a 
+                            href={selectedManual.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors shadow-sm hover:shadow"
+                            >
+                            <BookOpen className="w-5 h-5" />
+                            เปิดอ่านคู่มือ (PDF)
+                            </a>
+                            
+                            <button 
+                            onClick={() => setSelectedManual(null)}
+                            className="w-full py-3 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium rounded-lg transition-colors"
+                            >
+                            ปิดหน้าต่าง
+                            </button>
+                        </div>
+                        </div>
+                        
+                        <div className="bg-gray-50 px-6 py-3 text-xs text-gray-500 flex items-center justify-center gap-1 border-t">
+                        <ExternalLink className="w-3 h-3" />
+                        เอกสารจะเปิดในหน้าต่างใหม่จากแหล่งข้อมูลภายนอก
+                        </div>
+                    </div>
+                    </div>
+                )}
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold text-gray-900 leading-snug">
-                    {selectedManual.title}
-                  </h2>
-                  <span className="inline-block mt-2 px-2 py-1 bg-white/60 text-xs font-semibold rounded text-gray-600">
-                    PDF Document
-                  </span>
-                </div>
-              </div>
-              <button 
-                onClick={() => setSelectedManual(null)}
-                className="p-1 hover:bg-black/10 rounded-full transition-colors"
-              >
-                <X size={24} className="text-gray-500" />
-              </button>
-            </div>
+            );
+        };
 
-            <div className="p-6">
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                {selectedManual.description}
-              </p>
-
-              <div className="space-y-3">
-                <a 
-                  href={selectedManual.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm hover:shadow"
-                >
-                  <BookOpen size={20} />
-                  เปิดอ่านคู่มือ (PDF)
-                </a>
-                
-                <button 
-                  onClick={() => setSelectedManual(null)}
-                  className="w-full py-3 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium rounded-lg transition-colors"
-                >
-                  ปิดหน้าต่าง
-                </button>
-              </div>
-            </div>
-            
-            <div className="bg-gray-50 px-6 py-3 text-xs text-gray-500 flex items-center justify-center gap-1 border-t">
-              <ExternalLink size={12} />
-              เอกสารจะเปิดในหน้าต่างใหม่จากแหล่งข้อมูลภายนอก
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default ElectionManualApp;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ElectionManualApp />);
+    </script>
+</body>
+</html>
