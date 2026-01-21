@@ -79,13 +79,13 @@
         const ElectionManualApp = () => {
             const [selectedManual, setSelectedManual] = useState(null);
 
+            // อัปเดตลิงก์ Google Drive ตามที่ได้รับมอบหมาย
             const manuals = [
                 {
                     id: 1,
                     title: "พรบ. การเลือกตั้ง ส.ส. และ พรบ.การออกเสียงประชามติ",
                     description: "กฎหมายแม่บทและระเบียบที่เกี่ยวข้องกับการเลือกตั้งสมาชิกสภาผู้แทนราษฎรและการทำประชามติ",
-                    url: "https://qr1.me-qr.com/mobile/pdf/a83e3e86-72a5-47da-992e-c388b0370448",
-                    file: "พรบ. การเลือกตั้ง ส.ส. และ พรบ.การออกเสียงประชามติ.pdf",
+                    url: "https://drive.google.com/file/d/1MU-kry1e6FA1WT43BOWOt5-wPZVMEh_1/view?usp=drive_link",
                     icon: <BookOpen className="w-8 h-8 text-blue-600" />,
                     color: "bg-blue-50"
                 },
@@ -93,8 +93,7 @@
                     id: 2,
                     title: "คู่มือนายทะเบียนอำเภอ/นายทะเบียนท้องถิ่น",
                     description: "แนวทางการปฏิบัติงานสำหรับนายทะเบียนในการจัดทำบัญชีรายชื่อผู้มีสิทธิเลือกตั้งและการบริหารจัดการงานทะเบียน",
-                    url: "https://q.me-qr.com/4pH9IZrE",
-                    file: "คู่มือนายทะเบียนอำเภอ-นายทะเบียนท้องถิ่น.pdf",
+                    url: "https://drive.google.com/file/d/1A-9LSWqGjpvhKuaR-sr2RUtVGcvp3Tn1/view?usp=drive_link",
                     icon: <UserCheck className="w-8 h-8 text-indigo-600" />,
                     color: "bg-indigo-50"
                 },
@@ -102,8 +101,7 @@
                     id: 3,
                     title: "คู่มือ ผอ.กกต.เขต และ กกต.เขต",
                     description: "คู่มือสำหรับผู้อำนวยการการเลือกตั้งประจำเขตและคณะกรรมการการเลือกตั้งประจำเขต",
-                    url: "https://q.me-qr.com/J4NjUVJG",
-                    file: "คู่มือ ผอ.กกต.เขต และ กกต.เขต.pdf",
+                    url: "https://drive.google.com/file/d/1JxQWy9m4_a0mvvwYsLmI0lkGyWU9fULh/view?usp=drive_link",
                     icon: <Users className="w-8 h-8 text-purple-600" />,
                     color: "bg-purple-50"
                 },
@@ -111,8 +109,7 @@
                     id: 4,
                     title: "คู่มือปฏิบัติงานการ ลต.นอกเขตและการออกเสียงนอกเขต",
                     description: "ขั้นตอนการดำเนินการจัดการเลือกตั้งนอกเขตเลือกตั้ง",
-                    url: "https://q.me-qr.com/s4351vqi",
-                    file: "คู่มือปฏิบัติงานการ ลต.นอกเขตและการออกเสียงนอกเขต.pdf",
+                    url: "https://drive.google.com/file/d/1GeJJiDtb7l_FwbFn4ge4Auwzga4k7HoI/view?usp=drive_link",
                     icon: <MapPin className="w-8 h-8 text-teal-600" />,
                     color: "bg-teal-50"
                 },
@@ -120,8 +117,7 @@
                     id: 5,
                     title: "คู่มือปฏิบัติงานการ ลต.ล่วงหน้าในเขตเลือกตั้ง ส.ส.",
                     description: "การบริหารจัดการและขั้นตอนสำหรับการเลือกตั้งล่วงหน้าภายในเขตเลือกตั้ง",
-                    url: "https://q.me-qr.com/2vrurh1l",
-                    file: "คู่มือปฏิบัติงานการ ลต.ล่วงหน้าในเขตเลือกตั้ง ส.ส..pdf",
+                    url: "https://drive.google.com/file/d/1zGgImPvggZUB3Jr3f_qPEgIF0clNw4a9/view?usp=drive_link",
                     icon: <CalendarClock className="w-8 h-8 text-orange-600" />,
                     color: "bg-orange-50"
                 },
@@ -129,8 +125,7 @@
                     id: 6,
                     title: "คู่มือนับคะแนน ลต.นอกเขต และนอกราชอาณาจักร",
                     description: "ระเบียบและวิธีการนับคะแนนสำหรับการเลือกตั้งนอกเขตและนอกราชอาณาจักร",
-                    url: "https://q.me-qr.com/flynw41n",
-                    file: "คู่มือนับคะแนน ลต.นอกเขต และนอกราชอาณาจักร.pdf",
+                    url: "https://drive.google.com/file/d/1yAPMOhqz4ip7b65SoBnO3J2fzxe0DQFg/view?usp=drive_link",
                     icon: <BarChart3 className="w-8 h-8 text-red-600" />,
                     color: "bg-red-50"
                 },
@@ -138,8 +133,7 @@
                     id: 7,
                     title: "คู่มือปฏิบัติการ ลต.สำหรับผู้พิการหรือทุพพลภาพ",
                     description: "แนวทางการอำนวยความสะดวกและจัดการเลือกตั้งสำหรับผู้พิการหรือทุพพลภาพ",
-                    url: "https://drive.google.com/file/d/1rmCya1433VpuLRJJ5WNPFe_JpfosZQts/view?usp=sharing",
-                    file: "คู่มือปฏิบัติการ ลต.สำหรับผู้พิการหรือทุพพลภาพ.pdf",
+                    url: "https://drive.google.com/file/d/1QkBKX8q9F6YbdGUMLBHY_YIh5-wlxYpJ/view?usp=drive_link",
                     icon: <Accessibility className="w-8 h-8 text-pink-600" />,
                     color: "bg-pink-50"
                 },
@@ -147,8 +141,7 @@
                     id: 8,
                     title: "คู่มือปฏิบัติการ ลต.ก่อนวันเลือกตั้ง",
                     description: "สิ่งที่ต้องเตรียมพร้อมและการปฏิบัติงานในช่วงเวลาก่อนถึงวันเลือกตั้งจริง",
-                    url: "https://q.me-qr.com/m62ct34q",
-                    file: "คู่มือปฏิบัติการ ลต.ก่อนวันเลือกตั้ง.pdf",
+                    url: "https://drive.google.com/file/d/186JGwyDfRJD0A30FjIr96k5VII1doXsl/view?usp=drive_link",
                     icon: <ClipboardCheck className="w-8 h-8 text-emerald-600" />,
                     color: "bg-emerald-50"
                 },
@@ -156,8 +149,7 @@
                     id: 9,
                     title: "คู่มือ กปน. สำหรับการ ลต.ส.ส. และประชามติ",
                     description: "คู่มือสำหรับคณะกรรมการประจำหน่วยเลือกตั้ง (กปน.) ในวันเลือกตั้ง",
-                    url: "https://drive.google.com/file/d/1It1Vp1BqCQVAeL4LV_S3kixQK8Rf6Fxu/view?usp=sharing",
-                    file: "คู่มือ กปน. สำหรับการ ลต.ส.ส. และประชามติ.pdf",
+                    url: "https://drive.google.com/file/d/1uInQ7zaXkIfOT5zYZ6aXGH5Wol6I5mlY/view?usp=drive_link",
                     icon: <FileText className="w-8 h-8 text-gray-600" />,
                     color: "bg-gray-50"
                 }
@@ -262,6 +254,7 @@
                         </p>
 
                         <div className="space-y-3">
+                            {/* ปุ่มเปิดอ่านคู่มือ (Link ไป Google Drive) */}
                             <a 
                             href={selectedManual.url} 
                             target="_blank" 
@@ -272,10 +265,11 @@
                             เปิดอ่านคู่มือ (PDF)
                             </a>
                             
-                            {/* ปุ่มดาวน์โหลดเอกสาร */}
+                            {/* ปุ่มดาวน์โหลดเอกสาร (Link ไป Google Drive เช่นกัน) */}
                             <a 
-                            href={`manual/${selectedManual.file}`} 
-                            download
+                            href={selectedManual.url} 
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm hover:shadow"
                             >
                             <DownloadIcon className="w-5 h-5" />
@@ -293,7 +287,7 @@
                         
                         <div className="bg-gray-50 px-6 py-3 text-xs text-gray-500 flex items-center justify-center gap-1 border-t">
                         <ExternalLink className="w-3 h-3" />
-                        เอกสารจะเปิดในหน้าต่างใหม่จากแหล่งข้อมูลภายนอก
+                        เอกสารจะเปิดในหน้าต่างใหม่จากแหล่งข้อมูลภายนอก (Google Drive)
                         </div>
                     </div>
                     </div>
