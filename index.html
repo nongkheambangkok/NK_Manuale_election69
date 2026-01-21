@@ -28,7 +28,7 @@
     <script type="text/babel">
         const { useState } = React;
 
-        // --- Icon Components (Replacing lucide-react imports for offline/CDN compatibility) ---
+        // --- Icon Components ---
         const IconBase = ({ children, className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
                 {children}
@@ -71,6 +71,9 @@
         const ChevronRight = ({ className }) => (
             <IconBase className={className}><path d="m9 18 6-6-6-6"/></IconBase>
         );
+        const DownloadIcon = ({ className }) => (
+            <IconBase className={className}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></IconBase>
+        );
 
         // --- Main Application ---
         const ElectionManualApp = () => {
@@ -82,6 +85,7 @@
                     title: "พรบ. การเลือกตั้ง ส.ส. และ พรบ.การออกเสียงประชามติ",
                     description: "กฎหมายแม่บทและระเบียบที่เกี่ยวข้องกับการเลือกตั้งสมาชิกสภาผู้แทนราษฎรและการทำประชามติ",
                     url: "https://qr1.me-qr.com/mobile/pdf/a83e3e86-72a5-47da-992e-c388b0370448",
+                    file: "พรบ. การเลือกตั้ง ส.ส. และ พรบ.การออกเสียงประชามติ.pdf",
                     icon: <BookOpen className="w-8 h-8 text-blue-600" />,
                     color: "bg-blue-50"
                 },
@@ -90,6 +94,7 @@
                     title: "คู่มือนายทะเบียนอำเภอ/นายทะเบียนท้องถิ่น",
                     description: "แนวทางการปฏิบัติงานสำหรับนายทะเบียนในการจัดทำบัญชีรายชื่อผู้มีสิทธิเลือกตั้งและการบริหารจัดการงานทะเบียน",
                     url: "https://q.me-qr.com/4pH9IZrE",
+                    file: "คู่มือนายทะเบียนอำเภอ-นายทะเบียนท้องถิ่น.pdf",
                     icon: <UserCheck className="w-8 h-8 text-indigo-600" />,
                     color: "bg-indigo-50"
                 },
@@ -98,6 +103,7 @@
                     title: "คู่มือ ผอ.กกต.เขต และ กกต.เขต",
                     description: "คู่มือสำหรับผู้อำนวยการการเลือกตั้งประจำเขตและคณะกรรมการการเลือกตั้งประจำเขต",
                     url: "https://q.me-qr.com/J4NjUVJG",
+                    file: "คู่มือ ผอ.กกต.เขต และ กกต.เขต.pdf",
                     icon: <Users className="w-8 h-8 text-purple-600" />,
                     color: "bg-purple-50"
                 },
@@ -106,6 +112,7 @@
                     title: "คู่มือปฏิบัติงานการ ลต.นอกเขตและการออกเสียงนอกเขต",
                     description: "ขั้นตอนการดำเนินการจัดการเลือกตั้งนอกเขตเลือกตั้ง",
                     url: "https://q.me-qr.com/s4351vqi",
+                    file: "คู่มือปฏิบัติงานการ ลต.นอกเขตและการออกเสียงนอกเขต.pdf",
                     icon: <MapPin className="w-8 h-8 text-teal-600" />,
                     color: "bg-teal-50"
                 },
@@ -114,6 +121,7 @@
                     title: "คู่มือปฏิบัติงานการ ลต.ล่วงหน้าในเขตเลือกตั้ง ส.ส.",
                     description: "การบริหารจัดการและขั้นตอนสำหรับการเลือกตั้งล่วงหน้าภายในเขตเลือกตั้ง",
                     url: "https://q.me-qr.com/2vrurh1l",
+                    file: "คู่มือปฏิบัติงานการ ลต.ล่วงหน้าในเขตเลือกตั้ง ส.ส..pdf",
                     icon: <CalendarClock className="w-8 h-8 text-orange-600" />,
                     color: "bg-orange-50"
                 },
@@ -122,6 +130,7 @@
                     title: "คู่มือนับคะแนน ลต.นอกเขต และนอกราชอาณาจักร",
                     description: "ระเบียบและวิธีการนับคะแนนสำหรับการเลือกตั้งนอกเขตและนอกราชอาณาจักร",
                     url: "https://q.me-qr.com/flynw41n",
+                    file: "คู่มือนับคะแนน ลต.นอกเขต และนอกราชอาณาจักร.pdf",
                     icon: <BarChart3 className="w-8 h-8 text-red-600" />,
                     color: "bg-red-50"
                 },
@@ -130,6 +139,7 @@
                     title: "คู่มือปฏิบัติการ ลต.สำหรับผู้พิการหรือทุพพลภาพ",
                     description: "แนวทางการอำนวยความสะดวกและจัดการเลือกตั้งสำหรับผู้พิการหรือทุพพลภาพ",
                     url: "https://drive.google.com/file/d/1rmCya1433VpuLRJJ5WNPFe_JpfosZQts/view?usp=sharing",
+                    file: "คู่มือปฏิบัติการ ลต.สำหรับผู้พิการหรือทุพพลภาพ.pdf",
                     icon: <Accessibility className="w-8 h-8 text-pink-600" />,
                     color: "bg-pink-50"
                 },
@@ -138,6 +148,7 @@
                     title: "คู่มือปฏิบัติการ ลต.ก่อนวันเลือกตั้ง",
                     description: "สิ่งที่ต้องเตรียมพร้อมและการปฏิบัติงานในช่วงเวลาก่อนถึงวันเลือกตั้งจริง",
                     url: "https://q.me-qr.com/m62ct34q",
+                    file: "คู่มือปฏิบัติการ ลต.ก่อนวันเลือกตั้ง.pdf",
                     icon: <ClipboardCheck className="w-8 h-8 text-emerald-600" />,
                     color: "bg-emerald-50"
                 },
@@ -146,34 +157,36 @@
                     title: "คู่มือ กปน. สำหรับการ ลต.ส.ส. และประชามติ",
                     description: "คู่มือสำหรับคณะกรรมการประจำหน่วยเลือกตั้ง (กปน.) ในวันเลือกตั้ง",
                     url: "https://drive.google.com/file/d/1It1Vp1BqCQVAeL4LV_S3kixQK8Rf6Fxu/view?usp=sharing",
+                    file: "คู่มือ กปน. สำหรับการ ลต.ส.ส. และประชามติ.pdf",
                     icon: <FileText className="w-8 h-8 text-gray-600" />,
                     color: "bg-gray-50"
                 }
             ];
 
             return (
-                <div className="min-h-screen bg-gray-100 font-sans">
+                <div className="min-h-screen bg-gray-100 font-sans flex flex-col">
                 {/* Header Section */}
                 <header className="bg-white shadow-sm sticky top-0 z-10">
-                    <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        {/* Logo Section */}
-                        <img 
-                        src="logo.png" 
-                        alt="ตราสัญลักษณ์ กทม." 
-                        className="h-16 w-auto object-contain"
-                        />
-                        
-                        <div>
-                        <h1 className="text-xl font-bold text-gray-900">ศูนย์รวมคู่มือเลือกตั้ง 2569</h1>
-                        <p className="text-xs text-gray-500">สำนักงานเขตหนองแขม</p>
+                    <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
+                            {/* Logo Section */}
+                            <img 
+                            src="image/logo.png" 
+                            alt="ตราสัญลักษณ์ กทม." 
+                            className="h-16 w-auto object-contain"
+                            onError={(e) => {e.target.onerror = null; e.target.src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Seal_of_Bangkok_Metropolitan_Administration.svg/1200px-Seal_of_Bangkok_Metropolitan_Administration.svg.png"}}
+                            />
+                            
+                            <div>
+                            <h1 className="text-xl font-bold text-gray-900">ศูนย์รวมคู่มือเลือกตั้ง 2569</h1>
+                            <p className="text-xs text-gray-500">Election Manual Center 2026</p>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </header>
 
                 {/* Main Content - Grid 3x3 */}
-                <main className="max-w-5xl mx-auto px-4 py-8">
+                <main className="max-w-5xl mx-auto px-4 py-8 flex-grow">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {manuals.map((manual) => (
                         <button
@@ -208,7 +221,7 @@
                 {/* Footer */}
                 <footer className="bg-white border-t mt-auto py-6">
                     <div className="max-w-5xl mx-auto px-4 text-center text-gray-500 text-sm">
-                    <p>© 2569 ระบบศูนย์รวมคู่มือการเลือกตั้ง</p>
+                    <p>© 2569 ระบบศูนย์รวมคู่มือการเลือกตั้ง สำนักงานเขตหนองแขม</p>
                     <p className="mt-1 text-xs">พัฒนาเพื่ออำนวยความสะดวกในการเข้าถึงข้อมูลการเลือกตั้ง</p>
                     </div>
                 </footer>
@@ -257,6 +270,16 @@
                             >
                             <BookOpen className="w-5 h-5" />
                             เปิดอ่านคู่มือ (PDF)
+                            </a>
+                            
+                            {/* ปุ่มดาวน์โหลดเอกสาร */}
+                            <a 
+                            href={`manual/${selectedManual.file}`} 
+                            download
+                            className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm hover:shadow"
+                            >
+                            <DownloadIcon className="w-5 h-5" />
+                            ดาวน์โหลดเอกสาร
                             </a>
                             
                             <button 
