@@ -75,6 +75,19 @@
             <IconBase className={className}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></IconBase>
         );
 
+        // --- Helper Function ---
+        // ฟังก์ชันแปลงลิงก์ Google Drive ให้เป็น Direct Download Link
+        const getDirectDownloadLink = (url) => {
+            if (!url) return "#";
+            // แยก ID ไฟล์จาก URL
+            const match = url.match(/\/d\/(.+?)\//);
+            if (match && match[1]) {
+                const fileId = match[1];
+                return `https://drive.google.com/uc?export=download&id=${fileId}`;
+            }
+            return url;
+        };
+
         // --- Main Application ---
         const ElectionManualApp = () => {
             const [selectedManual, setSelectedManual] = useState(null);
@@ -254,7 +267,7 @@
                         </p>
 
                         <div className="space-y-3">
-                            {/* ปุ่มเปิดอ่านคู่มือ (Link ไป Google Drive) */}
+                            {/* ปุ่มเปิดอ่านคู่มือ (Link ไป Google Drive Preview) */}
                             <a 
                             href={selectedManual.url} 
                             target="_blank" 
@@ -265,15 +278,15 @@
                             เปิดอ่านคู่มือ (PDF)
                             </a>
                             
-                            {/* ปุ่มดาวน์โหลดเอกสาร (Link ไป Google Drive เช่นกัน) */}
+                            {/* ปุ่มดาวน์โหลดเอกสาร (Link แบบ Direct Download) */}
                             <a 
-                            href={selectedManual.url} 
+                            href={getDirectDownloadLink(selectedManual.url)} 
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm hover:shadow"
                             >
                             <DownloadIcon className="w-5 h-5" />
-                            ดาวน์โหลดเอกสาร
+                            ดาวน์โหลดเอกสารทันที
                             </a>
                             
                             <button 
