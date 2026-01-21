@@ -92,13 +92,13 @@
         const ElectionManualApp = () => {
             const [selectedManual, setSelectedManual] = useState(null);
 
-            // อัปเดตลิงก์ Google Drive ตามที่ได้รับมอบหมาย
+            // อัปเดตลิงก์ Google Drive ตามลำดับไฟล์ที่ถูกต้อง
             const manuals = [
                 {
                     id: 1,
                     title: "พรบ. การเลือกตั้ง ส.ส. และ พรบ.การออกเสียงประชามติ",
                     description: "กฎหมายแม่บทและระเบียบที่เกี่ยวข้องกับการเลือกตั้งสมาชิกสภาผู้แทนราษฎรและการทำประชามติ",
-                    url: "https://drive.google.com/file/d/1MU-kry1e6FA1WT43BOWOt5-wPZVMEh_1/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1uInQ7zaXkIfOT5zYZ6aXGH5Wol6I5mlY/view?usp=drive_link", // ลิงก์ที่ 9
                     icon: <BookOpen className="w-8 h-8 text-blue-600" />,
                     color: "bg-blue-50"
                 },
@@ -106,7 +106,7 @@
                     id: 2,
                     title: "คู่มือนายทะเบียนอำเภอ/นายทะเบียนท้องถิ่น",
                     description: "แนวทางการปฏิบัติงานสำหรับนายทะเบียนในการจัดทำบัญชีรายชื่อผู้มีสิทธิเลือกตั้งและการบริหารจัดการงานทะเบียน",
-                    url: "https://drive.google.com/file/d/1A-9LSWqGjpvhKuaR-sr2RUtVGcvp3Tn1/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1JxQWy9m4_a0mvvwYsLmI0lkGyWU9fULh/view?usp=drive_link", // ลิงก์ที่ 3
                     icon: <UserCheck className="w-8 h-8 text-indigo-600" />,
                     color: "bg-indigo-50"
                 },
@@ -114,7 +114,7 @@
                     id: 3,
                     title: "คู่มือ ผอ.กกต.เขต และ กกต.เขต",
                     description: "คู่มือสำหรับผู้อำนวยการการเลือกตั้งประจำเขตและคณะกรรมการการเลือกตั้งประจำเขต",
-                    url: "https://drive.google.com/file/d/1JxQWy9m4_a0mvvwYsLmI0lkGyWU9fULh/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/186JGwyDfRJD0A30FjIr96k5VII1doXsl/view?usp=drive_link", // ลิงก์ที่ 8
                     icon: <Users className="w-8 h-8 text-purple-600" />,
                     color: "bg-purple-50"
                 },
@@ -122,7 +122,7 @@
                     id: 4,
                     title: "คู่มือปฏิบัติงานการ ลต.นอกเขตและการออกเสียงนอกเขต",
                     description: "ขั้นตอนการดำเนินการจัดการเลือกตั้งนอกเขตเลือกตั้ง",
-                    url: "https://drive.google.com/file/d/1GeJJiDtb7l_FwbFn4ge4Auwzga4k7HoI/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1yAPMOhqz4ip7b65SoBnO3J2fzxe0DQFg/view?usp=drive_link", // ลิงก์ที่ 6
                     icon: <MapPin className="w-8 h-8 text-teal-600" />,
                     color: "bg-teal-50"
                 },
@@ -130,7 +130,7 @@
                     id: 5,
                     title: "คู่มือปฏิบัติงานการ ลต.ล่วงหน้าในเขตเลือกตั้ง ส.ส.",
                     description: "การบริหารจัดการและขั้นตอนสำหรับการเลือกตั้งล่วงหน้าภายในเขตเลือกตั้ง",
-                    url: "https://drive.google.com/file/d/1zGgImPvggZUB3Jr3f_qPEgIF0clNw4a9/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1QkBKX8q9F6YbdGUMLBHY_YIh5-wlxYpJ/view?usp=drive_link", // ลิงก์ที่ 7
                     icon: <CalendarClock className="w-8 h-8 text-orange-600" />,
                     color: "bg-orange-50"
                 },
@@ -138,7 +138,7 @@
                     id: 6,
                     title: "คู่มือนับคะแนน ลต.นอกเขต และนอกราชอาณาจักร",
                     description: "ระเบียบและวิธีการนับคะแนนสำหรับการเลือกตั้งนอกเขตและนอกราชอาณาจักร",
-                    url: "https://drive.google.com/file/d/1yAPMOhqz4ip7b65SoBnO3J2fzxe0DQFg/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1A-9LSWqGjpvhKuaR-sr2RUtVGcvp3Tn1/view?usp=drive_link", // ลิงก์ที่ 2
                     icon: <BarChart3 className="w-8 h-8 text-red-600" />,
                     color: "bg-red-50"
                 },
@@ -146,7 +146,7 @@
                     id: 7,
                     title: "คู่มือปฏิบัติการ ลต.สำหรับผู้พิการหรือทุพพลภาพ",
                     description: "แนวทางการอำนวยความสะดวกและจัดการเลือกตั้งสำหรับผู้พิการหรือทุพพลภาพ",
-                    url: "https://drive.google.com/file/d/1QkBKX8q9F6YbdGUMLBHY_YIh5-wlxYpJ/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1zGgImPvggZUB3Jr3f_qPEgIF0clNw4a9/view?usp=drive_link", // ลิงก์ที่ 5
                     icon: <Accessibility className="w-8 h-8 text-pink-600" />,
                     color: "bg-pink-50"
                 },
@@ -154,7 +154,7 @@
                     id: 8,
                     title: "คู่มือปฏิบัติการ ลต.ก่อนวันเลือกตั้ง",
                     description: "สิ่งที่ต้องเตรียมพร้อมและการปฏิบัติงานในช่วงเวลาก่อนถึงวันเลือกตั้งจริง",
-                    url: "https://drive.google.com/file/d/186JGwyDfRJD0A30FjIr96k5VII1doXsl/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1GeJJiDtb7l_FwbFn4ge4Auwzga4k7HoI/view?usp=drive_link", // ลิงก์ที่ 4
                     icon: <ClipboardCheck className="w-8 h-8 text-emerald-600" />,
                     color: "bg-emerald-50"
                 },
@@ -162,7 +162,7 @@
                     id: 9,
                     title: "คู่มือ กปน. สำหรับการ ลต.ส.ส. และประชามติ",
                     description: "คู่มือสำหรับคณะกรรมการประจำหน่วยเลือกตั้ง (กปน.) ในวันเลือกตั้ง",
-                    url: "https://drive.google.com/file/d/1uInQ7zaXkIfOT5zYZ6aXGH5Wol6I5mlY/view?usp=drive_link",
+                    url: "https://drive.google.com/file/d/1MU-kry1e6FA1WT43BOWOt5-wPZVMEh_1/view?usp=drive_link", // ลิงก์ที่ 1
                     icon: <FileText className="w-8 h-8 text-gray-600" />,
                     color: "bg-gray-50"
                 }
